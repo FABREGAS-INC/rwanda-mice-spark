@@ -1,7 +1,15 @@
 
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { ArrowDown, Calendar, Search } from 'lucide-react';
+import { ArrowDown, Calendar, Search, Menu, X } from 'lucide-react';
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from "@/components/ui/navigation-menu";
 
 const heroImages = [
   {
@@ -23,6 +31,7 @@ const heroImages = [
 
 export const HeroSection = () => {
   const [currentImage, setCurrentImage] = useState(0);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -64,15 +73,168 @@ export const HeroSection = () => {
           </div>
         </div>
         
-        <div className="hidden md:flex items-center space-x-8 text-white">
-          <a href="#venues" className="hover:text-yellow-300 transition-colors">Venues</a>
-          <a href="#events" className="hover:text-yellow-300 transition-colors">Events</a>
-          <a href="#testimonials" className="hover:text-yellow-300 transition-colors">Testimonials</a>
-          <Button variant="outline" className="border-white text-white hover:bg-white hover:text-green-800">
-            Contact Us
+        {/* Desktop Navigation */}
+        <div className="hidden xl:flex items-center text-white">
+          <NavigationMenu>
+            <NavigationMenuList className="flex space-x-6">
+              <NavigationMenuItem>
+                <NavigationMenuLink href="#home" className="text-yellow-300 font-semibold hover:text-yellow-200 transition-colors px-3 py-2">
+                  Home
+                </NavigationMenuLink>
+              </NavigationMenuItem>
+              
+              <NavigationMenuItem>
+                <NavigationMenuTrigger className="text-white hover:text-yellow-300 transition-colors">
+                  About Us
+                </NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <div className="w-48 p-4">
+                    <NavigationMenuLink href="#about" className="block px-3 py-2 hover:bg-gray-100 rounded">
+                      About RCB
+                    </NavigationMenuLink>
+                    <NavigationMenuLink href="#team" className="block px-3 py-2 hover:bg-gray-100 rounded">
+                      Our Team
+                    </NavigationMenuLink>
+                  </div>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+
+              <NavigationMenuItem>
+                <NavigationMenuTrigger className="text-white hover:text-yellow-300 transition-colors">
+                  About the Destination
+                </NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <div className="w-48 p-4">
+                    <NavigationMenuLink href="#destination" className="block px-3 py-2 hover:bg-gray-100 rounded">
+                      Rwanda Overview
+                    </NavigationMenuLink>
+                    <NavigationMenuLink href="#culture" className="block px-3 py-2 hover:bg-gray-100 rounded">
+                      Culture & Heritage
+                    </NavigationMenuLink>
+                  </div>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+
+              <NavigationMenuItem>
+                <NavigationMenuLink href="#facts" className="text-white hover:text-yellow-300 transition-colors px-3 py-2">
+                  Fast Facts
+                </NavigationMenuLink>
+              </NavigationMenuItem>
+
+              <NavigationMenuItem>
+                <NavigationMenuLink href="#venues" className="text-white hover:text-yellow-300 transition-colors px-3 py-2">
+                  Cities and Venues
+                </NavigationMenuLink>
+              </NavigationMenuItem>
+
+              <NavigationMenuItem>
+                <NavigationMenuLink href="#attractions" className="text-white hover:text-yellow-300 transition-colors px-3 py-2">
+                  Key Attractions
+                </NavigationMenuLink>
+              </NavigationMenuItem>
+
+              <NavigationMenuItem>
+                <NavigationMenuLink href="#events" className="text-white hover:text-yellow-300 transition-colors px-3 py-2">
+                  Plan Your Event
+                </NavigationMenuLink>
+              </NavigationMenuItem>
+
+              <NavigationMenuItem>
+                <NavigationMenuLink href="#calendar" className="text-white hover:text-yellow-300 transition-colors px-3 py-2">
+                  Calendar
+                </NavigationMenuLink>
+              </NavigationMenuItem>
+
+              <NavigationMenuItem>
+                <NavigationMenuTrigger className="text-white hover:text-yellow-300 transition-colors">
+                  Media
+                </NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <div className="w-48 p-4">
+                    <NavigationMenuLink href="#news" className="block px-3 py-2 hover:bg-gray-100 rounded">
+                      News & Updates
+                    </NavigationMenuLink>
+                    <NavigationMenuLink href="#gallery" className="block px-3 py-2 hover:bg-gray-100 rounded">
+                      Photo Gallery
+                    </NavigationMenuLink>
+                    <NavigationMenuLink href="#videos" className="block px-3 py-2 hover:bg-gray-100 rounded">
+                      Videos
+                    </NavigationMenuLink>
+                  </div>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+
+              <NavigationMenuItem>
+                <NavigationMenuLink href="#publications" className="text-white hover:text-yellow-300 transition-colors px-3 py-2">
+                  Publications
+                </NavigationMenuLink>
+              </NavigationMenuItem>
+
+              <NavigationMenuItem>
+                <Button variant="outline" className="border-white text-white hover:bg-white hover:text-green-800 ml-4">
+                  Contact Us
+                </Button>
+              </NavigationMenuItem>
+            </NavigationMenuList>
+          </NavigationMenu>
+        </div>
+
+        {/* Mobile Menu Button */}
+        <div className="xl:hidden">
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="text-white hover:bg-white/20"
+          >
+            {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </Button>
         </div>
       </nav>
+
+      {/* Mobile Navigation Menu */}
+      {mobileMenuOpen && (
+        <div className="absolute top-0 left-0 right-0 z-20 bg-black/95 backdrop-blur-sm xl:hidden">
+          <div className="p-6">
+            <div className="flex items-center justify-between mb-8">
+              <div className="flex items-center space-x-4">
+                <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-green-500 rounded-full flex items-center justify-center">
+                  <span className="text-white font-bold">RCB</span>
+                </div>
+                <div className="text-white">
+                  <h1 className="text-lg font-bold">Rwanda Convention Bureau</h1>
+                </div>
+              </div>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setMobileMenuOpen(false)}
+                className="text-white hover:bg-white/20"
+              >
+                <X className="h-6 w-6" />
+              </Button>
+            </div>
+            
+            <div className="space-y-4 text-white">
+              <a href="#home" className="block text-yellow-300 font-semibold py-2">Home</a>
+              <a href="#about" className="block hover:text-yellow-300 transition-colors py-2">About Us</a>
+              <a href="#destination" className="block hover:text-yellow-300 transition-colors py-2">About the Destination</a>
+              <a href="#facts" className="block hover:text-yellow-300 transition-colors py-2">Fast Facts</a>
+              <a href="#venues" className="block hover:text-yellow-300 transition-colors py-2">Cities and Venues</a>
+              <a href="#attractions" className="block hover:text-yellow-300 transition-colors py-2">Key Attractions</a>
+              <a href="#events" className="block hover:text-yellow-300 transition-colors py-2">Plan Your Event</a>
+              <a href="#calendar" className="block hover:text-yellow-300 transition-colors py-2">Calendar</a>
+              <a href="#media" className="block hover:text-yellow-300 transition-colors py-2">Media</a>
+              <a href="#publications" className="block hover:text-yellow-300 transition-colors py-2">Publications</a>
+              <div className="pt-4">
+                <Button variant="outline" className="border-white text-white hover:bg-white hover:text-green-800 w-full">
+                  Contact Us
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Hero Content */}
       <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-white px-6">
