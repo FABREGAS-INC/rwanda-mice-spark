@@ -6,49 +6,81 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Calendar, Mail, Phone, Users, MapPin, Clock } from 'lucide-react';
+import { Calendar, Mail, Phone, Users, MapPin, Clock, Globe, Building } from 'lucide-react';
 
 const PlanYourEvent = () => {
   const suppliers = [
     {
       category: 'Professional Conference Organizers (PCO)',
       description: 'Event Management Companies',
-      icon: Users
+      icon: Users,
+      companies: [
+        { name: 'Rwanda Events Solutions', email: 'info@rwandaevents.rw', phone: '+250 788 123 456' },
+        { name: 'Kigali Conference Organizers', email: 'events@kigaliconference.rw', phone: '+250 788 234 567' }
+      ]
     },
     {
       category: 'Destination Management Companies (DMCs)',
       description: 'Focusing on Incentive Travel',
-      icon: MapPin
+      icon: MapPin,
+      companies: [
+        { name: 'Rwanda DMC Services', email: 'travel@rwandadmc.rw', phone: '+250 788 345 678' },
+        { name: 'Gorilla Incentive Travel', email: 'incentives@gorillatravel.rw', phone: '+250 788 456 789' }
+      ]
     },
     {
       category: 'Sound System & AV',
       description: 'Event Production companies',
-      icon: Clock
+      icon: Clock,
+      companies: [
+        { name: 'Rwanda Audio Visual', email: 'av@rwandaav.rw', phone: '+250 788 567 890' },
+        { name: 'Kigali Sound Solutions', email: 'sound@kigalisound.rw', phone: '+250 788 678 901' }
+      ]
     },
     {
       category: 'Construction & Exhibition Booths',
       description: 'Supply of exhibition booths',
-      icon: Users
+      icon: Building,
+      companies: [
+        { name: 'Rwanda Exhibition Builders', email: 'booths@rwandaexhibition.rw', phone: '+250 788 789 012' },
+        { name: 'Kigali Display Solutions', email: 'displays@kigalidisplay.rw', phone: '+250 788 890 123' }
+      ]
     },
     {
       category: 'Translation Services',
       description: 'Equipment & service',
-      icon: Users
+      icon: Globe,
+      companies: [
+        { name: 'Rwanda Translation Hub', email: 'translate@rwandatranslation.rw', phone: '+250 788 901 234' },
+        { name: 'Multilingual Rwanda', email: 'services@multilingual.rw', phone: '+250 788 012 345' }
+      ]
     },
     {
       category: 'Marketing Communication',
       description: 'Advertising services',
-      icon: Users
+      icon: Users,
+      companies: [
+        { name: 'Rwanda Marketing Pro', email: 'marketing@rwandamarketing.rw', phone: '+250 788 123 789' },
+        { name: 'Kigali Communications', email: 'comms@kigalicomms.rw', phone: '+250 788 234 890' }
+      ]
     },
     {
       category: 'Transport Services',
       description: 'Professional transportation',
-      icon: Users
+      icon: Users,
+      companies: [
+        { name: 'Rwanda VIP Transport', email: 'vip@rwandatransport.rw', phone: '+250 788 345 901' },
+        { name: 'Kigali Executive Cars', email: 'executive@kigalicars.rw', phone: '+250 788 456 012' }
+      ]
     },
     {
       category: 'Printing and PR',
       description: 'Print and public relations',
-      icon: Users
+      icon: Users,
+      companies: [
+        { name: 'Rwanda Print Solutions', email: 'print@rwandaprint.rw', phone: '+250 788 567 123' },
+        { name: 'Kigali PR Agency', email: 'pr@kigalipr.rw', phone: '+250 788 678 234' }
+      ]
     }
   ];
 
@@ -204,13 +236,34 @@ const PlanYourEvent = () => {
                 <p className="text-gray-600 mb-6">
                   We work with a network of professional suppliers to ensure your event runs smoothly.
                 </p>
-                <div className="space-y-4">
+                <div className="space-y-6">
                   {suppliers.map((supplier, index) => (
-                    <div key={index} className="flex items-start space-x-3 p-4 bg-gray-50 rounded-lg">
-                      <supplier.icon className="h-6 w-6 text-blue-600 mt-1 flex-shrink-0" />
-                      <div>
-                        <h4 className="font-semibold text-gray-900">{supplier.category}</h4>
-                        <p className="text-sm text-gray-600">{supplier.description}</p>
+                    <div key={index} className="p-4 bg-gray-50 rounded-lg">
+                      <div className="flex items-start space-x-3 mb-4">
+                        <supplier.icon className="h-6 w-6 text-blue-600 mt-1 flex-shrink-0" />
+                        <div>
+                          <h4 className="font-semibold text-gray-900">{supplier.category}</h4>
+                          <p className="text-sm text-gray-600">{supplier.description}</p>
+                        </div>
+                      </div>
+                      <div className="ml-9 space-y-2">
+                        {supplier.companies.map((company, companyIndex) => (
+                          <div key={companyIndex} className="text-sm bg-white p-3 rounded border">
+                            <h5 className="font-medium text-gray-900 mb-1">{company.name}</h5>
+                            <div className="flex items-center space-x-4 text-gray-600">
+                              <div className="flex items-center space-x-1">
+                                <Mail className="h-3 w-3" />
+                                <a href={`mailto:${company.email}`} className="hover:text-blue-600">
+                                  {company.email}
+                                </a>
+                              </div>
+                              <div className="flex items-center space-x-1">
+                                <Phone className="h-3 w-3" />
+                                <span>{company.phone}</span>
+                              </div>
+                            </div>
+                          </div>
+                        ))}
                       </div>
                     </div>
                   ))}
