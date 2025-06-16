@@ -1,5 +1,6 @@
 
 import { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { ArrowDown, Calendar, Search, Menu, X } from 'lucide-react';
 import {
@@ -32,6 +33,7 @@ const heroImages = [
 export const HeroSection = () => {
   const [currentImage, setCurrentImage] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -39,6 +41,8 @@ export const HeroSection = () => {
     }, 5000);
     return () => clearInterval(interval);
   }, []);
+
+  const isActive = (path: string) => location.pathname === path;
 
   return (
     <section className="relative h-screen overflow-hidden">
@@ -63,7 +67,7 @@ export const HeroSection = () => {
 
       {/* Navigation */}
       <nav className="relative z-10 flex items-center justify-between p-6 lg:px-12">
-        <div className="flex items-center space-x-4">
+        <Link to="/" className="flex items-center space-x-4">
           <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-green-500 rounded-full flex items-center justify-center">
             <span className="text-white font-bold text-lg">RCB</span>
           </div>
@@ -71,108 +75,141 @@ export const HeroSection = () => {
             <h1 className="text-xl font-bold">Rwanda Convention Bureau</h1>
             <p className="text-sm opacity-90">Visit Rwanda</p>
           </div>
-        </div>
+        </Link>
         
         {/* Desktop Navigation */}
         <div className="hidden xl:flex items-center text-white">
           <NavigationMenu>
             <NavigationMenuList className="flex space-x-6">
               <NavigationMenuItem>
-                <NavigationMenuLink href="#home" className="text-yellow-300 font-semibold hover:text-yellow-200 transition-colors px-3 py-2">
-                  Home
+                <NavigationMenuLink
+                  asChild
+                  className={`${isActive('/') ? 'text-yellow-300 font-semibold' : 'text-white'} hover:text-yellow-300 transition-colors px-3 py-2`}
+                >
+                  <Link to="/">Home</Link>
                 </NavigationMenuLink>
               </NavigationMenuItem>
               
               <NavigationMenuItem>
-                <NavigationMenuTrigger className="text-white hover:text-yellow-300 transition-colors">
-                  About Us
-                </NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <div className="w-48 p-4">
-                    <NavigationMenuLink href="#about" className="block px-3 py-2 hover:bg-gray-100 rounded">
-                      About RCB
-                    </NavigationMenuLink>
-                    <NavigationMenuLink href="#team" className="block px-3 py-2 hover:bg-gray-100 rounded">
-                      Our Team
-                    </NavigationMenuLink>
-                  </div>
-                </NavigationMenuContent>
+                <NavigationMenuLink
+                  asChild
+                  className={`${isActive('/about-us') ? 'text-yellow-300 font-semibold' : 'text-white'} hover:text-yellow-300 transition-colors px-3 py-2`}
+                >
+                  <Link to="/about-us">About Us</Link>
+                </NavigationMenuLink>
               </NavigationMenuItem>
 
               <NavigationMenuItem>
-                <NavigationMenuTrigger className="text-white hover:text-yellow-300 transition-colors">
+                <NavigationMenuTrigger className="text-white hover:text-yellow-300 transition-colors bg-transparent">
                   About the Destination
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <div className="w-48 p-4">
-                    <NavigationMenuLink href="#destination" className="block px-3 py-2 hover:bg-gray-100 rounded">
-                      Rwanda Overview
+                  <div className="w-64 p-4 bg-white shadow-lg">
+                    <NavigationMenuLink asChild>
+                      <Link to="/about-destination" className="block px-3 py-2 text-gray-800 hover:bg-gray-100 rounded">
+                        Rwanda Overview
+                      </Link>
                     </NavigationMenuLink>
-                    <NavigationMenuLink href="#culture" className="block px-3 py-2 hover:bg-gray-100 rounded">
-                      Culture & Heritage
+                    <NavigationMenuLink asChild>
+                      <Link to="/cities-venues" className="block px-3 py-2 text-gray-800 hover:bg-gray-100 rounded">
+                        Cities and Venues
+                      </Link>
+                    </NavigationMenuLink>
+                    <NavigationMenuLink asChild>
+                      <Link to="/fast-facts" className="block px-3 py-2 text-gray-800 hover:bg-gray-100 rounded">
+                        Fast Facts
+                      </Link>
+                    </NavigationMenuLink>
+                    <NavigationMenuLink asChild>
+                      <Link to="/key-attractions" className="block px-3 py-2 text-gray-800 hover:bg-gray-100 rounded">
+                        Key Attractions
+                      </Link>
                     </NavigationMenuLink>
                   </div>
                 </NavigationMenuContent>
               </NavigationMenuItem>
 
               <NavigationMenuItem>
-                <NavigationMenuLink href="#facts" className="text-white hover:text-yellow-300 transition-colors px-3 py-2">
-                  Fast Facts
+                <NavigationMenuLink
+                  asChild
+                  className={`${isActive('/plan-your-event') ? 'text-yellow-300 font-semibold' : 'text-white'} hover:text-yellow-300 transition-colors px-3 py-2`}
+                >
+                  <Link to="/plan-your-event">Plan Your Event</Link>
                 </NavigationMenuLink>
               </NavigationMenuItem>
 
               <NavigationMenuItem>
-                <NavigationMenuLink href="#venues" className="text-white hover:text-yellow-300 transition-colors px-3 py-2">
-                  Cities and Venues
+                <NavigationMenuLink
+                  asChild
+                  className={`${isActive('/calendar') ? 'text-yellow-300 font-semibold' : 'text-white'} hover:text-yellow-300 transition-colors px-3 py-2`}
+                >
+                  <Link to="/calendar">Calendar</Link>
                 </NavigationMenuLink>
               </NavigationMenuItem>
 
               <NavigationMenuItem>
-                <NavigationMenuLink href="#attractions" className="text-white hover:text-yellow-300 transition-colors px-3 py-2">
-                  Key Attractions
-                </NavigationMenuLink>
-              </NavigationMenuItem>
-
-              <NavigationMenuItem>
-                <NavigationMenuLink href="#events" className="text-white hover:text-yellow-300 transition-colors px-3 py-2">
-                  Plan Your Event
-                </NavigationMenuLink>
-              </NavigationMenuItem>
-
-              <NavigationMenuItem>
-                <NavigationMenuLink href="#calendar" className="text-white hover:text-yellow-300 transition-colors px-3 py-2">
-                  Calendar
-                </NavigationMenuLink>
-              </NavigationMenuItem>
-
-              <NavigationMenuItem>
-                <NavigationMenuTrigger className="text-white hover:text-yellow-300 transition-colors">
+                <NavigationMenuTrigger className="text-white hover:text-yellow-300 transition-colors bg-transparent">
                   Media
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <div className="w-48 p-4">
-                    <NavigationMenuLink href="#news" className="block px-3 py-2 hover:bg-gray-100 rounded">
-                      News & Updates
+                  <div className="w-48 p-4 bg-white shadow-lg">
+                    <NavigationMenuLink asChild>
+                      <Link to="/media" className="block px-3 py-2 text-gray-800 hover:bg-gray-100 rounded">
+                        Media Center
+                      </Link>
                     </NavigationMenuLink>
-                    <NavigationMenuLink href="#gallery" className="block px-3 py-2 hover:bg-gray-100 rounded">
-                      Photo Gallery
+                    <NavigationMenuLink asChild>
+                      <Link to="/media-enquiries" className="block px-3 py-2 text-gray-800 hover:bg-gray-100 rounded">
+                        Media Enquiries
+                      </Link>
                     </NavigationMenuLink>
-                    <NavigationMenuLink href="#videos" className="block px-3 py-2 hover:bg-gray-100 rounded">
-                      Videos
+                    <NavigationMenuLink asChild>
+                      <Link to="/press-room" className="block px-3 py-2 text-gray-800 hover:bg-gray-100 rounded">
+                        Press Room
+                      </Link>
                     </NavigationMenuLink>
                   </div>
                 </NavigationMenuContent>
               </NavigationMenuItem>
 
               <NavigationMenuItem>
-                <NavigationMenuLink href="#publications" className="text-white hover:text-yellow-300 transition-colors px-3 py-2">
+                <NavigationMenuTrigger className="text-white hover:text-yellow-300 transition-colors bg-transparent">
                   Publications
-                </NavigationMenuLink>
+                </NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <div className="w-48 p-4 bg-white shadow-lg">
+                    <NavigationMenuLink asChild>
+                      <Link to="/publications" className="block px-3 py-2 text-gray-800 hover:bg-gray-100 rounded">
+                        All Publications
+                      </Link>
+                    </NavigationMenuLink>
+                    <NavigationMenuLink asChild>
+                      <Link to="/press-releases" className="block px-3 py-2 text-gray-800 hover:bg-gray-100 rounded">
+                        Press Releases
+                      </Link>
+                    </NavigationMenuLink>
+                    <NavigationMenuLink asChild>
+                      <Link to="/careers" className="block px-3 py-2 text-gray-800 hover:bg-gray-100 rounded">
+                        Careers
+                      </Link>
+                    </NavigationMenuLink>
+                    <NavigationMenuLink asChild>
+                      <Link to="/tenders" className="block px-3 py-2 text-gray-800 hover:bg-gray-100 rounded">
+                        Tenders
+                      </Link>
+                    </NavigationMenuLink>
+                    <NavigationMenuLink asChild>
+                      <Link to="/newsletter" className="block px-3 py-2 text-gray-800 hover:bg-gray-100 rounded">
+                        Newsletter
+                      </Link>
+                    </NavigationMenuLink>
+                  </div>
+                </NavigationMenuContent>
               </NavigationMenuItem>
 
               <NavigationMenuItem>
-                <Button variant="outline" className="border-white text-white hover:bg-white hover:text-green-800 ml-4">
-                  Contact Us
+                <Button asChild variant="outline" className="border-white text-white hover:bg-white hover:text-green-800 ml-4">
+                  <Link to="/contact-us">Contact Us</Link>
                 </Button>
               </NavigationMenuItem>
             </NavigationMenuList>
@@ -197,14 +234,14 @@ export const HeroSection = () => {
         <div className="absolute top-0 left-0 right-0 z-20 bg-black/95 backdrop-blur-sm xl:hidden">
           <div className="p-6">
             <div className="flex items-center justify-between mb-8">
-              <div className="flex items-center space-x-4">
+              <Link to="/" className="flex items-center space-x-4">
                 <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-green-500 rounded-full flex items-center justify-center">
                   <span className="text-white font-bold">RCB</span>
                 </div>
                 <div className="text-white">
                   <h1 className="text-lg font-bold">Rwanda Convention Bureau</h1>
                 </div>
-              </div>
+              </Link>
               <Button
                 variant="ghost"
                 size="sm"
@@ -216,19 +253,19 @@ export const HeroSection = () => {
             </div>
             
             <div className="space-y-4 text-white">
-              <a href="#home" className="block text-yellow-300 font-semibold py-2">Home</a>
-              <a href="#about" className="block hover:text-yellow-300 transition-colors py-2">About Us</a>
-              <a href="#destination" className="block hover:text-yellow-300 transition-colors py-2">About the Destination</a>
-              <a href="#facts" className="block hover:text-yellow-300 transition-colors py-2">Fast Facts</a>
-              <a href="#venues" className="block hover:text-yellow-300 transition-colors py-2">Cities and Venues</a>
-              <a href="#attractions" className="block hover:text-yellow-300 transition-colors py-2">Key Attractions</a>
-              <a href="#events" className="block hover:text-yellow-300 transition-colors py-2">Plan Your Event</a>
-              <a href="#calendar" className="block hover:text-yellow-300 transition-colors py-2">Calendar</a>
-              <a href="#media" className="block hover:text-yellow-300 transition-colors py-2">Media</a>
-              <a href="#publications" className="block hover:text-yellow-300 transition-colors py-2">Publications</a>
+              <Link to="/" className={`block ${isActive('/') ? 'text-yellow-300 font-semibold' : ''} hover:text-yellow-300 transition-colors py-2`}>Home</Link>
+              <Link to="/about-us" className={`block ${isActive('/about-us') ? 'text-yellow-300 font-semibold' : ''} hover:text-yellow-300 transition-colors py-2`}>About Us</Link>
+              <Link to="/about-destination" className={`block ${isActive('/about-destination') ? 'text-yellow-300 font-semibold' : ''} hover:text-yellow-300 transition-colors py-2`}>About the Destination</Link>
+              <Link to="/cities-venues" className={`block ${isActive('/cities-venues') ? 'text-yellow-300 font-semibold' : ''} hover:text-yellow-300 transition-colors py-2 pl-4`}>Cities and Venues</Link>
+              <Link to="/fast-facts" className={`block ${isActive('/fast-facts') ? 'text-yellow-300 font-semibold' : ''} hover:text-yellow-300 transition-colors py-2 pl-4`}>Fast Facts</Link>
+              <Link to="/key-attractions" className={`block ${isActive('/key-attractions') ? 'text-yellow-300 font-semibold' : ''} hover:text-yellow-300 transition-colors py-2 pl-4`}>Key Attractions</Link>
+              <Link to="/plan-your-event" className={`block ${isActive('/plan-your-event') ? 'text-yellow-300 font-semibold' : ''} hover:text-yellow-300 transition-colors py-2`}>Plan Your Event</Link>
+              <Link to="/calendar" className={`block ${isActive('/calendar') ? 'text-yellow-300 font-semibold' : ''} hover:text-yellow-300 transition-colors py-2`}>Calendar</Link>
+              <Link to="/media" className={`block ${isActive('/media') ? 'text-yellow-300 font-semibold' : ''} hover:text-yellow-300 transition-colors py-2`}>Media</Link>
+              <Link to="/publications" className={`block ${isActive('/publications') ? 'text-yellow-300 font-semibold' : ''} hover:text-yellow-300 transition-colors py-2`}>Publications</Link>
               <div className="pt-4">
-                <Button variant="outline" className="border-white text-white hover:bg-white hover:text-green-800 w-full">
-                  Contact Us
+                <Button asChild variant="outline" className="border-white text-white hover:bg-white hover:text-green-800 w-full">
+                  <Link to="/contact-us">Contact Us</Link>
                 </Button>
               </div>
             </div>
