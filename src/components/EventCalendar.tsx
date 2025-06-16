@@ -44,6 +44,36 @@ const upcomingEvents = [
     category: 'Finance',
     image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=300&h=200&fit=crop',
     status: 'Registration Open'
+  },
+  {
+    id: 5,
+    title: 'International Finance Summit',
+    date: 'June 12-14, 2024',
+    location: 'Kigali Marriott Hotel',
+    attendees: '600+',
+    category: 'Finance',
+    image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=300&h=200&fit=crop',
+    status: 'Registration Open'
+  },
+  {
+    id: 6,
+    title: 'International Finance Summit',
+    date: 'June 12-14, 2024',
+    location: 'Kigali Marriott Hotel',
+    attendees: '600+',
+    category: 'Finance',
+    image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=300&h=200&fit=crop',
+    status: 'Registration Open'
+  },
+  {
+    id: 7,
+    title: 'International Finance Summit',
+    date: 'June 12-14, 2024',
+    location: 'Kigali Marriott Hotel',
+    attendees: '600+',
+    category: 'Finance',
+    image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=300&h=200&fit=crop',
+    status: 'Registration Open'
   }
 ];
 

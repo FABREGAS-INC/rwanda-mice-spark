@@ -29,7 +29,7 @@ export const ChatBot = () => {
     {
       id: 1,
       type: 'bot',
-      content: 'Hello! I\'m your Rwanda Convention Bureau AI assistant. I can help you with venue selection, logistics, visas, and event planning. How can I assist you today?',
+      content: 'Hello! I\'m your RCB AI assistant. I can help you with venue selection, logistics, visas, and event planning. How can I assist you today?',
       timestamp: new Date()
     }
   ]);
@@ -106,7 +106,7 @@ export const ChatBot = () => {
             >
               <div className="flex items-center justify-between">
                 <div>
-                  <CardTitle className="text-lg">Rwanda AI Assistant</CardTitle>
+                  <CardTitle className="text-lg">RCB AI Assistant</CardTitle>
                   <p className="text-sm text-blue-100">Ask me about venues, visas, logistics</p>
                 </div>
                 <Badge variant="secondary" className="bg-white/20 text-white border-0">
