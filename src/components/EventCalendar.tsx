@@ -81,120 +81,124 @@ export const EventCalendar = () => {
   };
 
   return (
-    <section id="events" className="py-20 px-6 lg:px-12 bg-gradient-to-br from-blue-50 to-green-50">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-            Upcoming <span className="text-blue-600">Events</span>
-          </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Join world-class conferences and exhibitions that shape industries and foster innovation 
-            in the heart of Africa.
-          </p>
-        </div>
+    <>
+      <style>{`
+        @keyframes slide-left {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(-50%);
+          }
+        }
+        .animate-slide-left {
+          animation: slide-left 30s linear infinite;
+        }
+      `}</style>
+      
+      <section id="events" className="py-20 px-6 lg:px-12 bg-gradient-to-br from-blue-50 to-green-50">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+              Upcoming <span className="text-blue-600">Events</span>
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Join world-class conferences and exhibitions that shape industries and foster innovation 
+              in the heart of Africa.
+            </p>
+          </div>
 
-        {/* Sliding Events Container */}
-        <div className="relative overflow-hidden mb-12">
-          <div className="flex animate-slide-left space-x-6" style={{
-            animation: 'slide-left 30s linear infinite',
-            width: `${upcomingEvents.length * 320}px`
-          }}>
-            {/* Duplicate events for seamless loop */}
-            {[...upcomingEvents, ...upcomingEvents].map((event, index) => (
-              <Card key={`${event.id}-${index}`} className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 bg-white flex-shrink-0 w-80">
-                <div className="relative overflow-hidden">
-                  <img
-                    src={event.image}
-                    alt={event.title}
-                    className="w-full h-40 object-cover group-hover:scale-110 transition-transform duration-300"
-                  />
-                  <div className="absolute top-3 left-3">
-                    <Badge 
-                      variant={event.status === 'Registration Open' ? 'default' : 'secondary'}
-                      className={event.status === 'Registration Open' ? 'bg-green-600' : ''}
-                    >
-                      {event.status}
-                    </Badge>
-                  </div>
-                  <div className="absolute top-3 right-3">
-                    <Badge variant="outline" className="bg-white/90 text-gray-800">
-                      {event.category}
-                    </Badge>
-                  </div>
-                </div>
-                
-                <CardHeader className="pb-3">
-                  <CardTitle className="text-lg text-gray-900 line-clamp-2">
-                    {event.title}
-                  </CardTitle>
-                  <CardDescription className="text-blue-600 font-medium">
-                    {event.date}
-                  </CardDescription>
-                </CardHeader>
-                
-                <CardContent className="pt-0">
-                  <div className="space-y-2 mb-4">
-                    <div className="flex items-center text-gray-600 text-sm">
-                      <Calendar className="h-4 w-4 mr-2" />
-                      <span>{event.location}</span>
+          {/* Sliding Events Container */}
+          <div className="relative overflow-hidden mb-12">
+            <div className="flex animate-slide-left space-x-6" style={{
+              width: `${upcomingEvents.length * 320}px`
+            }}>
+              {/* Duplicate events for seamless loop */}
+              {[...upcomingEvents, ...upcomingEvents].map((event, index) => (
+                <Card key={`${event.id}-${index}`} className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 bg-white flex-shrink-0 w-80">
+                  <div className="relative overflow-hidden">
+                    <img
+                      src={event.image}
+                      alt={event.title}
+                      className="w-full h-40 object-cover group-hover:scale-110 transition-transform duration-300"
+                    />
+                    <div className="absolute top-3 left-3">
+                      <Badge 
+                        variant={event.status === 'Registration Open' ? 'default' : 'secondary'}
+                        className={event.status === 'Registration Open' ? 'bg-green-600' : ''}
+                      >
+                        {event.status}
+                      </Badge>
                     </div>
-                    <div className="flex items-center text-gray-600 text-sm">
-                      <Users className="h-4 w-4 mr-2" />
-                      <span>{event.attendees} expected attendees</span>
+                    <div className="absolute top-3 right-3">
+                      <Badge variant="outline" className="bg-white/90 text-gray-800">
+                        {event.category}
+                      </Badge>
                     </div>
                   </div>
                   
-                  <Button 
-                    className="w-full bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700"
-                    size="sm"
-                    onClick={() => handleLearnMore(event.id)}
-                  >
-                    Learn More
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
+                  <CardHeader className="pb-3">
+                    <CardTitle className="text-lg text-gray-900 line-clamp-2">
+                      {event.title}
+                    </CardTitle>
+                    <CardDescription className="text-blue-600 font-medium">
+                      {event.date}
+                    </CardDescription>
+                  </CardHeader>
+                  
+                  <CardContent className="pt-0">
+                    <div className="space-y-2 mb-4">
+                      <div className="flex items-center text-gray-600 text-sm">
+                        <Calendar className="h-4 w-4 mr-2" />
+                        <span>{event.location}</span>
+                      </div>
+                      <div className="flex items-center text-gray-600 text-sm">
+                        <Users className="h-4 w-4 mr-2" />
+                        <span>{event.attendees} expected attendees</span>
+                      </div>
+                    </div>
+                    
+                    <Button 
+                      className="w-full bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700"
+                      size="sm"
+                      onClick={() => handleLearnMore(event.id)}
+                    >
+                      Learn More
+                    </Button>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+
+          {/* Call to Action */}
+          <div className="text-center bg-white rounded-2xl p-8 shadow-lg">
+            <h3 className="text-2xl font-bold text-gray-900 mb-4">
+              Ready to Host Your Event in Rwanda?
+            </h3>
+            <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
+              Let our experienced team help you plan an unforgettable event that leverages Rwanda's 
+              unique advantages and world-class infrastructure.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button 
+                size="lg" 
+                className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800"
+              >
+                <Calendar className="mr-2 h-5 w-5" />
+                Schedule Consultation
+              </Button>
+              <Button 
+                size="lg" 
+                variant="outline"
+                className="border-green-600 text-green-600 hover:bg-green-600 hover:text-white"
+              >
+                Download Event Guide
+              </Button>
+            </div>
           </div>
         </div>
-
-        {/* Call to Action */}
-        <div className="text-center bg-white rounded-2xl p-8 shadow-lg">
-          <h3 className="text-2xl font-bold text-gray-900 mb-4">
-            Ready to Host Your Event in Rwanda?
-          </h3>
-          <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
-            Let our experienced team help you plan an unforgettable event that leverages Rwanda's 
-            unique advantages and world-class infrastructure.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button 
-              size="lg" 
-              className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800"
-            >
-              <Calendar className="mr-2 h-5 w-5" />
-              Schedule Consultation
-            </Button>
-            <Button 
-              size="lg" 
-              variant="outline"
-              className="border-green-600 text-green-600 hover:bg-green-600 hover:text-white"
-            >
-              Download Event Guide
-            </Button>
-          </div>
-        </div>
-
-        <style jsx>{`
-          @keyframes slide-left {
-            0% {
-              transform: translateX(0);
-            }
-            100% {
-              transform: translateX(-50%);
-            }
-          }
-        `}</style>
-      </div>
-    </section>
+      </section>
+    </>
   );
 };

@@ -4,7 +4,8 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
-import { Users, Calendar, Search, ArrowUp } from 'lucide-react';
+import { Users, Calendar, Search, ArrowUp, Send } from 'lucide-react';
+import { getResponse } from '@/data/chatbotKnowledge';
 
 const quickQuestions = [
   'What venues are available for 500+ people?',
@@ -15,17 +16,15 @@ const quickQuestions = [
   'Can you help me plan catering for my event?'
 ];
 
-const chatResponses = {
-  venues: 'For 500+ delegates, I recommend the Kigali Convention Centre (2,600 capacity), Intare Conference Arena (5,000 capacity), or Radisson Blu Hotel (1,200 capacity). All feature modern AV equipment and catering services.',
-  visa: 'Most visitors can obtain a visa on arrival or apply for an e-visa online. The process typically takes 2-3 business days. I can connect you with our visa assistance team for specific requirements.',
-  accommodation: 'Kigali offers excellent accommodation from luxury hotels like Marriott and Radisson Blu to boutique lodges. Most venues have partnerships with nearby hotels for group bookings.',
-  transport: 'Kigali International Airport is 10km from the city center. We can arrange airport transfers, and taxi services are readily available. Many hotels offer complimentary airport shuttles.',
-  timing: 'Rwanda has a pleasant climate year-round. The dry seasons (June-September and December-February) are ideal for outdoor activities and exhibitions.',
-  catering: 'Our partner venues offer diverse catering options including international cuisine, local Rwandan specialties, and dietary accommodations. We can arrange tastings and custom menus.'
-};
+interface Message {
+  id: number;
+  type: 'user' | 'bot';
+  content: string;
+  timestamp: Date;
+}
 
 export const ChatBot = () => {
-  const [messages, setMessages] = useState([
+  const [messages, setMessages] = useState<Message[]>([
     {
       id: 1,
       type: 'bot',
@@ -35,9 +34,10 @@ export const ChatBot = () => {
   ]);
   const [inputValue, setInputValue] = useState('');
   const [isMinimized, setIsMinimized] = useState(false);
+  const [isTyping, setIsTyping] = useState(false);
 
-  const sendMessage = (message) => {
-    const userMessage = {
+  const sendMessage = (message: string) => {
+    const userMessage: Message = {
       id: messages.length + 1,
       type: 'user',
       content: message,
@@ -45,28 +45,13 @@ export const ChatBot = () => {
     };
 
     setMessages(prev => [...prev, userMessage]);
+    setIsTyping(true);
 
-    // Simulate AI response
+    // Simulate AI response with actual knowledge base
     setTimeout(() => {
-      let response = "Thank you for your question! I'm here to help with information about venues, logistics, visas, and event planning in Rwanda. For specific requirements, I can connect you with our expert team.";
+      const response = getResponse(message);
       
-      // Simple keyword matching for demo
-      const lowerMessage = message.toLowerCase();
-      if (lowerMessage.includes('venue') || lowerMessage.includes('capacity')) {
-        response = chatResponses.venues;
-      } else if (lowerMessage.includes('visa')) {
-        response = chatResponses.visa;
-      } else if (lowerMessage.includes('hotel') || lowerMessage.includes('accommodation')) {
-        response = chatResponses.accommodation;
-      } else if (lowerMessage.includes('airport') || lowerMessage.includes('transport')) {
-        response = chatResponses.transport;
-      } else if (lowerMessage.includes('weather') || lowerMessage.includes('month') || lowerMessage.includes('time')) {
-        response = chatResponses.timing;
-      } else if (lowerMessage.includes('catering') || lowerMessage.includes('food')) {
-        response = chatResponses.catering;
-      }
-
-      const botMessage = {
+      const botMessage: Message = {
         id: messages.length + 2,
         type: 'bot',
         content: response,
@@ -74,16 +59,28 @@ export const ChatBot = () => {
       };
 
       setMessages(prev => [...prev, botMessage]);
-    }, 1000);
+      setIsTyping(false);
+    }, 1500);
 
     setInputValue('');
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (inputValue.trim()) {
       sendMessage(inputValue.trim());
     }
+  };
+
+  const formatMessage = (content: string) => {
+    // Convert markdown-style formatting to HTML
+    return content
+      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+      .replace(/🏢|🎫|🏨|🚗|🌤️|🎯|🍽️|📋|☀️|🌧️|🌡️|🏔️|🌟|🛬|📱|💻|💰|⏱️/g, '<span style="font-size: 1.1em;">$&</span>')
+      .split('\n')
+      .map(line => line.trim())
+      .filter(line => line.length > 0)
+      .join('<br/>');
   };
 
   return (
@@ -124,16 +121,33 @@ export const ChatBot = () => {
                     className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}
                   >
                     <div
-                      className={`max-w-[80%] p-3 rounded-lg text-sm ${
+                      className={`max-w-[85%] p-3 rounded-lg text-sm ${
                         message.type === 'user'
                           ? 'bg-blue-600 text-white'
                           : 'bg-gray-100 text-gray-900'
                       }`}
                     >
-                      {message.content}
+                      <div 
+                        dangerouslySetInnerHTML={{ 
+                          __html: formatMessage(message.content) 
+                        }} 
+                      />
                     </div>
                   </div>
                 ))}
+                
+                {/* Typing indicator */}
+                {isTyping && (
+                  <div className="flex justify-start">
+                    <div className="bg-gray-100 text-gray-900 p-3 rounded-lg text-sm">
+                      <div className="flex space-x-1">
+                        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
+                        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{animationDelay: '0.1s'}}></div>
+                        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{animationDelay: '0.2s'}}></div>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
 
               {/* Quick Questions */}
@@ -145,10 +159,10 @@ export const ChatBot = () => {
                       key={index}
                       variant="outline"
                       size="sm"
-                      className="text-xs h-6 px-2"
+                      className="text-xs h-6 px-2 hover:bg-blue-100"
                       onClick={() => sendMessage(question)}
                     >
-                      {question.slice(0, 25)}...
+                      {question.slice(0, 20)}...
                     </Button>
                   ))}
                 </div>
@@ -162,13 +176,15 @@ export const ChatBot = () => {
                     onChange={(e) => setInputValue(e.target.value)}
                     placeholder="Ask about venues, visas, logistics..."
                     className="flex-1 text-sm"
+                    disabled={isTyping}
                   />
                   <Button 
                     type="submit" 
                     size="sm"
+                    disabled={!inputValue.trim() || isTyping}
                     className="bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700 text-white"
                   >
-                    Send
+                    <Send className="h-4 w-4" />
                   </Button>
                 </div>
               </form>
