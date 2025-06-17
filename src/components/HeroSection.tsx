@@ -229,7 +229,7 @@ export const HeroSection = () => {
             <Button
               size="lg"
               variant="outline"
-              className="border-white text-white hover:bg-white hover:text-green-800 px-8 py-4 text-lg"
+              className="border-white text-blue-600 hover:bg-white hover:text-green-800 ml-4"
             >
               <Search className="mr-2 h-5 w-5" />
               Explore Venues
