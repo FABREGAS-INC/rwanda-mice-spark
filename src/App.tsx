@@ -12,7 +12,6 @@ import FastFacts from "./pages/FastFacts";
 import KeyAttractions from "./pages/KeyAttractions";
 import PlanYourEvent from "./pages/PlanYourEvent";
 import Calendar from "./pages/Calendar";
-import EventDetail from "./pages/EventDetail";
 import Media from "./pages/Media";
 import MediaEnquiries from "./pages/MediaEnquiries";
 import PressRoom from "./pages/PressRoom";

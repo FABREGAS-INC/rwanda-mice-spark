@@ -20,11 +20,11 @@ const AboutUs = () => {
       title: 'Gukunda Igihugu (Patriotism)',
       description: 'Passionate commitment to promoting Rwanda as a world-class destination.'
     },
-    {
-      icon: Lightbulb,
-      title: 'Ubwoba bw\'Imana (God-fearing)',
-      description: 'Conducting our work with humility, respect, and moral principles.'
-    }
+    // {
+    //   icon: Lightbulb,
+    //   title: 'Ubwoba bw\'Imana (God-fearing)',
+    //   description: 'Conducting our work with humility, respect, and moral principles.'
+    // }
   ];
 
   const achievements = [

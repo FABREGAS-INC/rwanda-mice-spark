@@ -74,7 +74,7 @@ export const Footer = () => {
         {/* Bottom Footer */}
         <div className="flex flex-col md:flex-row justify-between items-center text-sm text-gray-400">
           <div className="mb-4 md:mb-0">
-            <p>&copy; 2024 Rwanda Convention Bureau. All rights reserved.</p>
+            <p>&copy; 2025 Rwanda Convention Bureau. All rights reserved.</p>
           </div>
           <div className="flex space-x-6">
             <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
@@ -86,7 +86,7 @@ export const Footer = () => {
         {/* Contact Info */}
         <div className="mt-8 text-center text-sm text-gray-400">
           <p>Rwanda Convention Bureau | Kigali, Rwanda</p>
-          <p>Email: info@rwandaconventionbureau.rw | Phone: +250 788 123 456</p>
+          <p>Email: info@rcb.rw | Phone: +250 78xxxxxx</p>
         </div>
       </div>
     </footer>

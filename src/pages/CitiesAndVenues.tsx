@@ -9,7 +9,7 @@ const CitiesAndVenues = () => {
     {
       name: 'Kigali',
       description: 'Rwanda\'s vibrant capital and primary business hub',
-      image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600&h=400&fit=crop',
+      image: '/images/kigali.jpeg',
       highlights: [
         'Kigali Convention Centre - 2,600 capacity',
         '5,000+ hotel rooms',
@@ -35,7 +35,7 @@ const CitiesAndVenues = () => {
     {
       name: 'Musanze',
       description: 'Gateway to Volcanoes National Park and gorilla trekking',
-      image: 'https://images.unsplash.com/photo-1464822759844-d150ad6fb1b5?w=600&h=400&fit=crop',
+      image: '/images/musanze.jpg',
       highlights: [
         'Mountain retreat venues',
         'Unique wildlife experiences',
@@ -61,7 +61,7 @@ const CitiesAndVenues = () => {
     {
       name: 'Rubavu (Gisenyi)',
       description: 'Beautiful lakeside city on the shores of Lake Kivu',
-      image: 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=600&h=400&fit=crop',
+      image: '/images/Rubavu.jpg',
       highlights: [
         'Lake Kivu waterfront venues',
         'Resort-style accommodations',

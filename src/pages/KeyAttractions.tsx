@@ -10,7 +10,7 @@ const KeyAttractions = () => {
       name: 'Volcanoes National Park',
       category: 'Wildlife & Nature',
       icon: Mountain,
-      image: 'https://images.unsplash.com/photo-1464822759844-d150ad6fb1b5?w=600&h=400&fit=crop',
+      image: '/images/volcanoes.jpg',
       description: 'Home to the endangered mountain gorillas and part of the Virunga Mountains.',
       highlights: [
         'Mountain Gorilla Trekking',
@@ -27,7 +27,7 @@ const KeyAttractions = () => {
       name: 'Lake Kivu',
       category: 'Lakes & Water Activities',
       icon: Waves,
-      image: 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=600&h=400&fit=crop',
+      image: '/images/kivu.jpg',
       description: 'One of Africa\'s Great Lakes, offering beautiful scenery and water activities.',
       highlights: [
         'Boat Cruises',
@@ -61,7 +61,7 @@ const KeyAttractions = () => {
       name: 'Nyungwe Forest National Park',
       category: 'Forest & Primates',
       icon: TreePine,
-      image: 'https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=600&h=400&fit=crop',
+      image: '/images/nyungwe.jpg',
       description: 'Ancient rainforest with chimpanzees, canopy walks, and incredible biodiversity.',
       highlights: [
         'Chimpanzee Tracking',
@@ -74,28 +74,28 @@ const KeyAttractions = () => {
       duration: '2-3 days recommended',
       bestFor: 'Nature lovers, adventure seekers, eco-tourism'
     },
-    {
-      name: 'Kigali Genocide Memorial',
-      category: 'History & Culture',
-      icon: Star,
-      image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600&h=400&fit=crop',
-      description: 'A moving memorial and museum documenting Rwanda\'s history and transformation.',
-      highlights: [
-        'Historical Exhibitions',
-        'Memorial Gardens',
-        'Educational Programs',
-        'Documentation Center',
-        'Guided Tours'
-      ],
-      distance: 'Central Kigali',
-      duration: '2-3 hours',
-      bestFor: 'Cultural understanding, educational visits, reflection'
-    },
+    // {
+    //   name: 'Kigali Genocide Memorial',
+    //   category: 'History & Culture',
+    //   icon: Star,
+    //   image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600&h=400&fit=crop',
+    //   description: 'A moving memorial and museum documenting Rwanda\'s history and transformation.',
+    //   highlights: [
+    //     'Historical Exhibitions',
+    //     'Memorial Gardens',
+    //     'Educational Programs',
+    //     'Documentation Center',
+    //     'Guided Tours'
+    //   ],
+    //   distance: 'Central Kigali',
+    //   duration: '2-3 hours',
+    //   bestFor: 'Cultural understanding, educational visits, reflection'
+    // },
     {
       name: 'King\'s Palace Museum',
       category: 'History & Culture',
       icon: Star,
-      image: 'https://images.unsplash.com/photo-1571115764595-644a1f56a55c?w=600&h=400&fit=crop',
+      image: '/images/palace.jpg',
       description: 'Traditional royal residence showcasing Rwandan culture and history.',
       highlights: [
         'Traditional Architecture',

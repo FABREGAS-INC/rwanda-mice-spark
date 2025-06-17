@@ -1,9 +1,10 @@
-
+import { useEffect, useRef } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 
 const testimonials = [
+  // (same testimonials as before)
   {
     id: 1,
     name: 'Sarah Johnson',
@@ -47,6 +48,35 @@ const testimonials = [
 ];
 
 export const TestimonialsSection = () => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (videoRef.current) {
+            if (entry.isIntersecting) {
+              videoRef.current.play();
+            } else {
+              videoRef.current.pause();
+            }
+          }
+        });
+      },
+      { threshold: 0.5 } // triggers when 50% visible
+    );
+
+    if (videoRef.current) {
+      observer.observe(videoRef.current);
+    }
+
+    return () => {
+      if (videoRef.current) {
+        observer.unobserve(videoRef.current);
+      }
+    };
+  }, []);
+
   return (
     <section id="testimonials" className="py-20 px-6 lg:px-12 bg-white">
       <div className="max-w-7xl mx-auto">
@@ -103,10 +133,17 @@ export const TestimonialsSection = () => {
             Africa's premier MICE destination.
           </p>
           <div className="relative bg-black/20 rounded-xl p-8 mb-6">
-            <div className="aspect-video bg-black/30 rounded-lg flex items-center justify-center">
-              <div className="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center cursor-pointer hover:bg-white transition-colors">
-                <div className="w-0 h-0 border-l-[12px] border-l-blue-600 border-t-[8px] border-t-transparent border-b-[8px] border-b-transparent ml-1"></div>
-              </div>
+            <div className="aspect-video bg-black/30 rounded-lg overflow-hidden">
+              <video
+                ref={videoRef}
+                muted
+                loop
+                playsInline
+                className="w-full h-full object-cover rounded-lg"
+              >
+                <source src="/videos/testmonial.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
             </div>
           </div>
           <p className="text-sm text-blue-100">
