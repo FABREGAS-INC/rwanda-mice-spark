@@ -1,11 +1,11 @@
 
-import { ReactNode } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { ReactNode, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { HeroSection } from './HeroSection';
 import { Footer } from './Footer';
-import { Button } from './ui/button';
-import { Menu, X, ChevronDown } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { Navigation } from './Navigation';
+import { MobileNavigation } from './MobileNavigation';
+import { PageHeader } from './PageHeader';
 
 interface PageLayoutProps {
   children: ReactNode;
@@ -16,9 +16,6 @@ interface PageLayoutProps {
 
 export const PageLayout = ({ children, showHero = false, title, description }: PageLayoutProps) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const location = useLocation();
-
-  const isActive = (path: string) => location.pathname === path;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-green-50 to-yellow-50">
@@ -37,308 +34,17 @@ export const PageLayout = ({ children, showHero = false, title, description }: P
                 </div>
               </Link>
 
-              {/* Desktop Navigation */}
-              <div className="hidden xl:flex items-center">
-                <div className="flex space-x-6">
-                  <Link
-                    to="/"
-                    className={`${isActive('/') ? 'text-blue-600 font-semibold' : 'text-gray-700'} hover:text-blue-600 transition-colors px-3 py-2`}
-                  >
-                    Home
-                  </Link>
-                  
-                  <Link
-                    to="/about-us"
-                    className={`${isActive('/about-us') ? 'text-blue-600 font-semibold' : 'text-gray-700'} hover:text-blue-600 transition-colors px-3 py-2`}
-                  >
-                    About Us
-                  </Link>
-
-                  {/* About the Destination Dropdown */}
-                  <div className="relative group">
-                    <button className="flex items-center text-gray-700 hover:text-blue-600 transition-colors px-3 py-2 focus:outline-none">
-                      About the Destination
-                      <ChevronDown className="ml-1 h-4 w-4 transition-transform group-hover:rotate-180" />
-                    </button>
-                    <div className="absolute top-full left-0 w-64 bg-white shadow-xl border rounded-md z-[100] mt-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                      <Link 
-                        to="/about-destination" 
-                        className="block px-4 py-3 text-gray-800 hover:bg-blue-50 hover:text-blue-600 transition-colors"
-                      >
-                        Rwanda Overview
-                      </Link>
-                      <Link 
-                        to="/cities-venues" 
-                        className="block px-4 py-3 text-gray-800 hover:bg-blue-50 hover:text-blue-600 transition-colors"
-                      >
-                        Cities and Venues
-                      </Link>
-                      <Link 
-                        to="/fast-facts" 
-                        className="block px-4 py-3 text-gray-800 hover:bg-blue-50 hover:text-blue-600 transition-colors"
-                      >
-                        Fast Facts
-                      </Link>
-                      <Link 
-                        to="/key-attractions" 
-                        className="block px-4 py-3 text-gray-800 hover:bg-blue-50 hover:text-blue-600 transition-colors"
-                      >
-                        Key Attractions
-                      </Link>
-                    </div>
-                  </div>
-
-                  <Link
-                    to="/plan-your-event"
-                    className={`${isActive('/plan-your-event') ? 'text-blue-600 font-semibold' : 'text-gray-700'} hover:text-blue-600 transition-colors px-3 py-2`}
-                  >
-                    Plan Your Event
-                  </Link>
-
-                  <Link
-                    to="/calendar"
-                    className={`${isActive('/calendar') ? 'text-blue-600 font-semibold' : 'text-gray-700'} hover:text-blue-600 transition-colors px-3 py-2`}
-                  >
-                    Calendar
-                  </Link>
-
-                  {/* Media Dropdown */}
-                  <div className="relative group">
-                    <button className="flex items-center text-gray-700 hover:text-blue-600 transition-colors px-3 py-2 focus:outline-none">
-                      Media
-                      <ChevronDown className="ml-1 h-4 w-4 transition-transform group-hover:rotate-180" />
-                    </button>
-                    <div className="absolute top-full left-0 w-48 bg-white shadow-xl border rounded-md z-[100] mt-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                      <Link 
-                        to="/media" 
-                        className="block px-4 py-3 text-gray-800 hover:bg-blue-50 hover:text-blue-600 transition-colors"
-                      >
-                        Media Center
-                      </Link>
-                      <Link 
-                        to="/media-enquiries" 
-                        className="block px-4 py-3 text-gray-800 hover:bg-blue-50 hover:text-blue-600 transition-colors"
-                      >
-                        Media Enquiries
-                      </Link>
-                      <Link 
-                        to="/press-room" 
-                        className="block px-4 py-3 text-gray-800 hover:bg-blue-50 hover:text-blue-600 transition-colors"
-                      >
-                        Press Room
-                      </Link>
-                    </div>
-                  </div>
-
-                  {/* Publications Dropdown */}
-                  <div className="relative group">
-                    <button className="flex items-center text-gray-700 hover:text-blue-600 transition-colors px-3 py-2 focus:outline-none">
-                      Publications
-                      <ChevronDown className="ml-1 h-4 w-4 transition-transform group-hover:rotate-180" />
-                    </button>
-                    <div className="absolute top-full left-0 w-48 bg-white shadow-xl border rounded-md z-[100] mt-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                      <Link 
-                        to="/publications" 
-                        className="block px-4 py-3 text-gray-800 hover:bg-blue-50 hover:text-blue-600 transition-colors"
-                      >
-                        All Publications
-                      </Link>
-                      <Link 
-                        to="/press-releases" 
-                        className="block px-4 py-3 text-gray-800 hover:bg-blue-50 hover:text-blue-600 transition-colors"
-                      >
-                        Press Releases
-                      </Link>
-                      <Link 
-                        to="/careers" 
-                        className="block px-4 py-3 text-gray-800 hover:bg-blue-50 hover:text-blue-600 transition-colors"
-                      >
-                        Careers
-                      </Link>
-                      <Link 
-                        to="/tenders" 
-                        className="block px-4 py-3 text-gray-800 hover:bg-blue-50 hover:text-blue-600 transition-colors"
-                      >
-                        Tenders
-                      </Link>
-                      <Link 
-                        to="/newsletter" 
-                        className="block px-4 py-3 text-gray-800 hover:bg-blue-50 hover:text-blue-600 transition-colors"
-                      >
-                        Newsletter
-                      </Link>
-                    </div>
-                  </div>
-
-                  <Button asChild variant="outline" className="border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white ml-4">
-                    <Link to="/contact-us">Contact Us</Link>
-                  </Button>
-                </div>
-              </div>
-
-              {/* Mobile Menu Button */}
-              <div className="xl:hidden flex items-center">
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                  className="text-gray-700 hover:bg-gray-100"
-                >
-                  {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-                </Button>
-              </div>
+              <Navigation />
+              <MobileNavigation 
+                mobileMenuOpen={mobileMenuOpen}
+                setMobileMenuOpen={setMobileMenuOpen}
+              />
             </div>
           </div>
-
-          {/* Mobile Navigation Menu */}
-          {mobileMenuOpen && (
-            <div className="xl:hidden bg-white border-t shadow-lg">
-              <div className="px-4 py-6 space-y-4 max-h-96 overflow-y-auto">
-                <Link 
-                  to="/" 
-                  className={`block ${isActive('/') ? 'text-blue-600 font-semibold' : 'text-gray-700'} hover:text-blue-600 transition-colors py-2`}
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  Home
-                </Link>
-                <Link 
-                  to="/about-us" 
-                  className={`block ${isActive('/about-us') ? 'text-blue-600 font-semibold' : 'text-gray-700'} hover:text-blue-600 transition-colors py-2`}
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  About Us
-                </Link>
-                
-                <div className="border-l-2 border-gray-200 pl-4">
-                  <p className="text-sm font-medium text-gray-500 mb-2">About the Destination</p>
-                  <Link 
-                    to="/about-destination" 
-                    className={`block ${isActive('/about-destination') ? 'text-blue-600 font-semibold' : 'text-gray-700'} hover:text-blue-600 transition-colors py-2 pl-2`}
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    Rwanda Overview
-                  </Link>
-                  <Link 
-                    to="/cities-venues" 
-                    className={`block ${isActive('/cities-venues') ? 'text-blue-600 font-semibold' : 'text-gray-700'} hover:text-blue-600 transition-colors py-2 pl-2`}
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    Cities and Venues
-                  </Link>
-                  <Link 
-                    to="/fast-facts" 
-                    className={`block ${isActive('/fast-facts') ? 'text-blue-600 font-semibold' : 'text-gray-700'} hover:text-blue-600 transition-colors py-2 pl-2`}
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    Fast Facts
-                  </Link>
-                  <Link 
-                    to="/key-attractions" 
-                    className={`block ${isActive('/key-attractions') ? 'text-blue-600 font-semibold' : 'text-gray-700'} hover:text-blue-600 transition-colors py-2 pl-2`}
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    Key Attractions
-                  </Link>
-                </div>
-
-                <Link 
-                  to="/plan-your-event" 
-                  className={`block ${isActive('/plan-your-event') ? 'text-blue-600 font-semibold' : 'text-gray-700'} hover:text-blue-600 transition-colors py-2`}
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  Plan Your Event
-                </Link>
-                <Link 
-                  to="/calendar" 
-                  className={`block ${isActive('/calendar') ? 'text-blue-600 font-semibold' : 'text-gray-700'} hover:text-blue-600 transition-colors py-2`}
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  Calendar
-                </Link>
-
-                <div className="border-l-2 border-gray-200 pl-4">
-                  <p className="text-sm font-medium text-gray-500 mb-2">Media</p>
-                  <Link 
-                    to="/media" 
-                    className={`block ${isActive('/media') ? 'text-blue-600 font-semibold' : 'text-gray-700'} hover:text-blue-600 transition-colors py-2 pl-2`}
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    Media Center
-                  </Link>
-                  <Link 
-                    to="/media-enquiries" 
-                    className={`block ${isActive('/media-enquiries') ? 'text-blue-600 font-semibold' : 'text-gray-700'} hover:text-blue-600 transition-colors py-2 pl-2`}
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    Media Enquiries
-                  </Link>
-                  <Link 
-                    to="/press-room" 
-                    className={`block ${isActive('/press-room') ? 'text-blue-600 font-semibold' : 'text-gray-700'} hover:text-blue-600 transition-colors py-2 pl-2`}
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    Press Room
-                  </Link>
-                </div>
-
-                <div className="border-l-2 border-gray-200 pl-4">
-                  <p className="text-sm font-medium text-gray-500 mb-2">Publications</p>
-                  <Link 
-                    to="/publications" 
-                    className={`block ${isActive('/publications') ? 'text-blue-600 font-semibold' : 'text-gray-700'} hover:text-blue-600 transition-colors py-2 pl-2`}
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    All Publications
-                  </Link>
-                  <Link 
-                    to="/press-releases" 
-                    className={`block ${isActive('/press-releases') ? 'text-blue-600 font-semibold' : 'text-gray-700'} hover:text-blue-600 transition-colors py-2 pl-2`}
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    Press Releases
-                  </Link>
-                  <Link 
-                    to="/careers" 
-                    className={`block ${isActive('/careers') ? 'text-blue-600 font-semibold' : 'text-gray-700'} hover:text-blue-600 transition-colors py-2 pl-2`}
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    Careers
-                  </Link>
-                  <Link 
-                    to="/tenders" 
-                    className={`block ${isActive('/tenders') ? 'text-blue-600 font-semibold' : 'text-gray-700'} hover:text-blue-600 transition-colors py-2 pl-2`}
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    Tenders
-                  </Link>
-                  <Link 
-                    to="/newsletter" 
-                    className={`block ${isActive('/newsletter') ? 'text-blue-600 font-semibold' : 'text-gray-700'} hover:text-blue-600 transition-colors py-2 pl-2`}
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    Newsletter
-                  </Link>
-                </div>
-
-                <div className="pt-4">
-                  <Button asChild variant="outline" className="border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white w-full">
-                    <Link to="/contact-us" onClick={() => setMobileMenuOpen(false)}>Contact Us</Link>
-                  </Button>
-                </div>
-              </div>
-            </div>
-          )}
         </nav>
       )}
       
-      {!showHero && (title || description) && (
-        <div className="bg-gradient-to-r from-blue-600 via-green-600 to-yellow-600 py-16">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            {title && <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">{title}</h1>}
-            {description && <p className="text-xl text-white/90 max-w-3xl mx-auto">{description}</p>}
-          </div>
-        </div>
-      )}
+      {!showHero && <PageHeader title={title} description={description} />}
       
       <main className="flex-1">
         {children}
