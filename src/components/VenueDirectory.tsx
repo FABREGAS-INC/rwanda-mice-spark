@@ -13,7 +13,7 @@ const venues = [
     name: 'Kigali Convention Centre',
     location: 'Kigali City Center',
     capacity: '2,600 delegates',
-    image: 'https://images.unsplash.com/photo-1587985628949-bfe6632bea94?w=400&h=250&fit=crop',
+    image: '/images/venue1.jpg',
     description: 'State-of-the-art convention center with world-class facilities',
     features: ['Wi-Fi', 'AV Equipment', 'Catering', 'Parking'],
     type: 'Convention Center'
@@ -23,7 +23,7 @@ const venues = [
     name: 'Radisson Blu Hotel & Convention Centre',
     location: 'Kigali',
     capacity: '1,200 delegates',
-    image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=250&fit=crop',
+    image: '/images/venue2.jpg',
     description: 'Luxury hotel with comprehensive meeting facilities',
     features: ['Accommodation', 'Restaurant', 'Spa', 'Business Center'],
     type: 'Hotel'
@@ -33,7 +33,7 @@ const venues = [
     name: 'Intare Conference Arena',
     location: 'Rusororo, Gasabo',
     capacity: '5,000 delegates',
-    image: 'https://images.unsplash.com/photo-1464822759844-d150ad6fb1b5?w=400&h=250&fit=crop',
+    image: '/images/venue3.jpg',
     description: 'Modern multipurpose venue for large-scale events',
     features: ['Exhibition Space', 'Performance Stage', 'VIP Areas', 'Media Center'],
     type: 'Arena'
@@ -43,7 +43,7 @@ const venues = [
     name: 'Kigali Marriott Hotel',
     location: 'KN 3 Ave, Kigali',
     capacity: '800 delegates',
-    image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400&h=250&fit=crop',
+    image: '/images/venue4.jpg',
     description: 'Premium business hotel with flexible meeting spaces',
     features: ['Executive Lounge', 'Boardrooms', 'Outdoor Terrace', 'Fine Dining'],
     type: 'Hotel'

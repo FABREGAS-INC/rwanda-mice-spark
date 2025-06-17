@@ -12,7 +12,7 @@ const upcomingEvents = [
     location: 'Kigali Convention Centre',
     attendees: '2,500+',
     category: 'Technology',
-    image: 'https://images.unsplash.com/photo-1587985628949-bfe6632bea94?w=300&h=200&fit=crop',
+    image: '/images/event1.jpg',
     status: 'Registration Open'
   },
   {
@@ -22,7 +22,7 @@ const upcomingEvents = [
     location: 'Radisson Blu Hotel',
     attendees: '800+',
     category: 'Healthcare',
-    image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=300&h=200&fit=crop',
+    image: '/images/event2.jpg',
     status: 'Coming Soon'
   },
   {
@@ -32,7 +32,7 @@ const upcomingEvents = [
     location: 'Intare Conference Arena',
     attendees: '1,200+',
     category: 'Tourism',
-    image: 'https://images.unsplash.com/photo-1464822759844-d150ad6fb1b5?w=300&h=200&fit=crop',
+    image: '/images/event3.jpg',
     status: 'Planning Phase'
   },
   {
@@ -42,37 +42,7 @@ const upcomingEvents = [
     location: 'Kigali Marriott Hotel',
     attendees: '600+',
     category: 'Finance',
-    image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=300&h=200&fit=crop',
-    status: 'Registration Open'
-  },
-  {
-    id: 5,
-    title: 'International Finance Summit',
-    date: 'June 12-14, 2024',
-    location: 'Kigali Marriott Hotel',
-    attendees: '600+',
-    category: 'Finance',
-    image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=300&h=200&fit=crop',
-    status: 'Registration Open'
-  },
-  {
-    id: 6,
-    title: 'International Finance Summit',
-    date: 'June 12-14, 2024',
-    location: 'Kigali Marriott Hotel',
-    attendees: '600+',
-    category: 'Finance',
-    image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=300&h=200&fit=crop',
-    status: 'Registration Open'
-  },
-  {
-    id: 7,
-    title: 'International Finance Summit',
-    date: 'June 12-14, 2024',
-    location: 'Kigali Marriott Hotel',
-    attendees: '600+',
-    category: 'Finance',
-    image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=300&h=200&fit=crop',
+    image: '/images/event4.jpg',
     status: 'Registration Open'
   }
 ];
