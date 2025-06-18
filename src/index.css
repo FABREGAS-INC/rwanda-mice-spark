@@ -111,6 +111,101 @@
   .text-gradient {
     @apply bg-gradient-to-r from-blue-600 via-green-600 to-yellow-600 bg-clip-text text-transparent;
   }
+
+  /* Geometric Pattern Backgrounds */
+  .bg-pattern-1 {
+    background-image: url('/lovable-uploads/0281e7cd-f43e-48a0-a110-d795770fe4f4.png');
+    background-size: 200px 200px;
+    background-repeat: repeat;
+    background-position: center;
+    opacity: 0.05;
+  }
+
+  .bg-pattern-2 {
+    background-image: url('/lovable-uploads/94864f9a-e1a7-4a08-aae9-2e8358cbf21d.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.03;
+  }
+
+  .bg-pattern-3 {
+    background-image: url('/lovable-uploads/b33a9d7a-4279-4614-8873-de1a27a473bf.png');
+    background-size: 150px 150px;
+    background-repeat: repeat;
+    background-position: center;
+    opacity: 0.04;
+  }
+
+  /* Pattern overlays for sections */
+  .section-with-pattern-1 {
+    position: relative;
+    background-color: #fafafa;
+  }
+
+  .section-with-pattern-1::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('/lovable-uploads/0281e7cd-f43e-48a0-a110-d795770fe4f4.png');
+    background-size: 200px 200px;
+    background-repeat: repeat;
+    opacity: 0.05;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .section-with-pattern-2 {
+    position: relative;
+    background-color: #f8f9fa;
+  }
+
+  .section-with-pattern-2::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('/lovable-uploads/b33a9d7a-4279-4614-8873-de1a27a473bf.png');
+    background-size: 150px 150px;
+    background-repeat: repeat;
+    opacity: 0.04;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .section-with-pattern-3 {
+    position: relative;
+    background-color: #ffffff;
+  }
+
+  .section-with-pattern-3::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('/lovable-uploads/94864f9a-e1a7-4a08-aae9-2e8358cbf21d.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.03;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Content positioning for pattern sections */
+  .section-with-pattern-1 > *,
+  .section-with-pattern-2 > *,
+  .section-with-pattern-3 > * {
+    position: relative;
+    z-index: 1;
+  }
 }
 
 /* Custom scrollbar */
