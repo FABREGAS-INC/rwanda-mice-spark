@@ -8,13 +8,13 @@ import { ChatBot } from '@/components/ChatBot';
 const Index = () => {
   return (
     <PageLayout showHero={true}>
-      <div className="section-with-pattern-1">
+      <div className="section-with-imigongo-1">
         <VenueDirectory />
       </div>
-      <div className="section-with-pattern-2">
+      <div className="section-with-imigongo-2">
         <EventCalendar />
       </div>
-      <div className="section-with-pattern-3">
+      <div className="section-with-imigongo-3">
         <TestimonialsSection />
       </div>
       <ChatBot />

@@ -1,4 +1,3 @@
-
 import { ReactNode, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { HeroSection } from './HeroSection';
@@ -19,7 +18,7 @@ export const PageLayout = ({ children, showHero = false, title, description }: P
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
   return (
-    <div className="min-h-screen section-with-pattern-2">
+    <div className="min-h-screen section-with-imigongo-2">
       {showHero ? (
         <HeroSection />
       ) : (
@@ -50,7 +49,7 @@ export const PageLayout = ({ children, showHero = false, title, description }: P
           </div>
 
           {mobileMenuOpen && (
-            <div className="lg:hidden bg-white border-t section-with-pattern-1">
+            <div className="lg:hidden bg-white border-t section-with-imigongo-1">
               <div className="px-4 py-4 space-y-2">
                 <Link to="/" className="block text-gray-700 hover:text-blue-600 py-2 text-sm">
                   Home
@@ -121,7 +120,7 @@ export const PageLayout = ({ children, showHero = false, title, description }: P
 
       <PageHeader title={title} description={description} />
 
-      <main className="flex-1 section-with-pattern-3">{children}</main>
+      <main className="flex-1 section-with-imigongo-3">{children}</main>
       <Footer />
     </div>
   );
