@@ -112,13 +112,13 @@
     @apply bg-gradient-to-r from-blue-600 via-green-600 to-yellow-600 bg-clip-text text-transparent;
   }
 
-  /* Rwandan Imigongo Cultural Pattern Backgrounds */
+  /* Rwandan Imigongo Cultural Pattern Backgrounds - More Visible */
   .bg-imigongo-1 {
     background-image: url('/lovable-uploads/1041b82a-f8ad-4b67-9961-d236c20394e8.png');
     background-size: 300px 300px;
     background-repeat: repeat;
     background-position: center;
-    opacity: 0.04;
+    opacity: 0.15;
   }
 
   .bg-imigongo-2 {
@@ -126,7 +126,7 @@
     background-size: 200px 200px;
     background-repeat: repeat;
     background-position: center;
-    opacity: 0.06;
+    opacity: 0.12;
   }
 
   .bg-imigongo-3 {
@@ -134,10 +134,33 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    opacity: 0.03;
+    opacity: 0.08;
   }
 
-  /* Imigongo pattern overlays for sections */
+  /* Side decorative elements */
+  .page-sides-decoration::before,
+  .page-sides-decoration::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    width: 60px;
+    height: 100vh;
+    background-image: url('/lovable-uploads/1041b82a-f8ad-4b67-9961-d236c20394e8.png');
+    background-size: 60px 60px;
+    background-repeat: repeat-y;
+    opacity: 0.1;
+    z-index: -1;
+  }
+
+  .page-sides-decoration::before {
+    left: 0;
+  }
+
+  .page-sides-decoration::after {
+    right: 0;
+  }
+
+  /* Imigongo pattern overlays for sections - More Visible */
   .section-with-imigongo-1 {
     position: relative;
     background-color: #fafafa;
@@ -153,7 +176,7 @@
     background-image: url('/lovable-uploads/1041b82a-f8ad-4b67-9961-d236c20394e8.png');
     background-size: 300px 300px;
     background-repeat: repeat;
-    opacity: 0.04;
+    opacity: 0.12;
     pointer-events: none;
     z-index: 0;
   }
@@ -173,7 +196,7 @@
     background-image: url('/lovable-uploads/50796988-01d9-45ee-bfb4-28ad92bc352d.png');
     background-size: 200px 200px;
     background-repeat: repeat;
-    opacity: 0.06;
+    opacity: 0.1;
     pointer-events: none;
     z-index: 0;
   }
@@ -194,7 +217,7 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    opacity: 0.03;
+    opacity: 0.06;
     pointer-events: none;
     z-index: 0;
   }
@@ -203,6 +226,32 @@
   .section-with-imigongo-1 > *,
   .section-with-imigongo-2 > *,
   .section-with-imigongo-3 > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Decorative header with pattern */
+  .imigongo-header {
+    position: relative;
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+  }
+
+  .imigongo-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('/lovable-uploads/50796988-01d9-45ee-bfb4-28ad92bc352d.png');
+    background-size: 150px 150px;
+    background-repeat: repeat;
+    opacity: 0.08;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .imigongo-header > * {
     position: relative;
     z-index: 1;
   }

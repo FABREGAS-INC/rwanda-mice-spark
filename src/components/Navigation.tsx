@@ -44,7 +44,7 @@ export const Navigation = ({ openDropdown, setOpenDropdown }: NavigationProps) =
             <ChevronDown className={`ml-1 h-4 w-4 transition-transform ${openDropdown === 'destination' ? 'rotate-180' : ''}`} />
           </button>
           {openDropdown === 'destination' && (
-            <div className="absolute top-full left-0 w-64 bg-white shadow-xl border rounded-md z-[100] mt-1">
+            <div className="absolute top-full left-0 w-64 bg-white shadow-xl border rounded-md z-[1000] mt-1">
               <Link 
                 to="/about-destination" 
                 className="block px-4 py-3 text-gray-800 hover:bg-blue-50 hover:text-blue-600 transition-colors"
@@ -101,7 +101,7 @@ export const Navigation = ({ openDropdown, setOpenDropdown }: NavigationProps) =
             <ChevronDown className={`ml-1 h-4 w-4 transition-transform ${openDropdown === 'media' ? 'rotate-180' : ''}`} />
           </button>
           {openDropdown === 'media' && (
-            <div className="absolute top-full left-0 w-48 bg-white shadow-xl border rounded-md z-[100] mt-1">
+            <div className="absolute top-full left-0 w-48 bg-white shadow-xl border rounded-md z-[1000] mt-1">
               <Link 
                 to="/media" 
                 className="block px-4 py-3 text-gray-800 hover:bg-blue-50 hover:text-blue-600 transition-colors"
@@ -137,7 +137,7 @@ export const Navigation = ({ openDropdown, setOpenDropdown }: NavigationProps) =
             <ChevronDown className={`ml-1 h-4 w-4 transition-transform ${openDropdown === 'publications' ? 'rotate-180' : ''}`} />
           </button>
           {openDropdown === 'publications' && (
-            <div className="absolute top-full left-0 w-48 bg-white shadow-xl border rounded-md z-[100] mt-1">
+            <div className="absolute top-full left-0 w-48 bg-white shadow-xl border rounded-md z-[1000] mt-1">
               <Link 
                 to="/publications" 
                 className="block px-4 py-3 text-gray-800 hover:bg-blue-50 hover:text-blue-600 transition-colors"

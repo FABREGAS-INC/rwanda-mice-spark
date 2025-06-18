@@ -1,3 +1,4 @@
+
 import { ReactNode, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { HeroSection } from './HeroSection';
@@ -18,11 +19,11 @@ export const PageLayout = ({ children, showHero = false, title, description }: P
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
   return (
-    <div className="min-h-screen section-with-imigongo-2">
+    <div className="min-h-screen section-with-imigongo-2 page-sides-decoration">
       {showHero ? (
         <HeroSection />
       ) : (
-        <nav className="bg-white shadow-lg relative z-50">
+        <nav className="bg-white shadow-lg relative z-50 imigongo-header">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center h-20">
               {/* Logo and Branding */}
